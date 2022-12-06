@@ -4,8 +4,8 @@ In this repository the programming sheets of the lecture *Introduction into the 
 
 ## Content:
 
-- [] Programming Sheet 1
-- [] Programming Sheet 2
+- [ ] Programming Sheet 1
+- [ ] Programming Sheet 2
 
 
 ## Solutions of theory sheets:
