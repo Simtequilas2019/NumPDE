@@ -28,7 +28,11 @@ while ~isempty(k);
     pos3 = p1(:,t1(3,i));
     
     %Laengste Kante bestimmen
-    [~,l] = max([(pos1-pos2)'*(pos1-pos2),(pos2-pos3)'*(pos2-pos3),(pos3-pos1)'*(pos3-pos1)]);
+    [~,l] = max([ ...
+        (pos1-pos2)'*(pos1-pos2), ...
+        (pos2-pos3)'*(pos2-pos3), ...
+        (pos3-pos1)'*(pos3-pos1)]);
+
     %zyklische Verteilung:
     c=circshift((1:3)',[1-l,0]);    
     node1 = c(1);
@@ -40,8 +44,11 @@ while ~isempty(k);
     p1=[p1 newp];
     
     % Index des potentiellen Nachbardreiecks bestimmen
-    n=  find(sum((t1(1:3,:)==t1(node1,i)) + (t1(1:3,:)==t1(node2,i)))==2);
+    %Zuerst wird der index von t gesucht für die sowohl 
+    n=  find(sum((t1(1:3,:)==t1(node1,i)) + ...
+                 (t1(1:3,:)==t1(node2,i)))==2);
     n(find(n==i))=[];
+    
     
     %Dreieck teilen
     t1 = [t1 [t1(node3,i);t1(node2,i);index_p_neu;1]];

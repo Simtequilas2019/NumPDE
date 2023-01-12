@@ -1,22 +1,27 @@
-function mypdeplot(p, e, t)
+function mypdeplot(p, e, t, zdata, u)
 
 
-hold('on');
+
 
 % Ersten Punkt anhängen, um ein geschlossenes Dreieck zu erhalten
 tt = [t(1:3,:); t(1,:)];
-
-% Plotten der Dreiecke
 P = reshape(p(:,reshape(tt', [], 1)), 2, [], 4);
-plot(squeeze(P(1,:,:))', squeeze(P(2,:,:))', 'b-');
-
-% Plotten der Randkanten
 E = reshape(p(:,reshape(e(1:2,:)', [], 1)), 2, [], 2);
-plot(squeeze(E(1,:,:))', squeeze(E(2,:,:))', 'r-');
 
-hold('off');
+if nargin==3
+    hold('on');
+    % Plotten der Dreiecke
+    plot(squeeze(P(1,:,:))', squeeze(P(2,:,:))', 'b-');
+    % Plotten der Randkanten
+    plot(squeeze(E(1,:,:))', squeeze(E(2,:,:))', 'r-');
+    hold('off');
+    axis equal
+    axis tight
+end
 
-axis equal
-axis tight
+if nargin==5
+    trisurf(t(1:3,:)',p(1,:),p(2,:),u)
+    zlabel(zdata);
+    title('Surface plot')
 
 end
