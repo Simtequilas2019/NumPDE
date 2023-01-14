@@ -1,8 +1,5 @@
 function mypdeplot(p, e, t, zdata, u)
-
-
-
-
+figure
 % Ersten Punkt anhängen, um ein geschlossenes Dreieck zu erhalten
 tt = [t(1:3,:); t(1,:)];
 P = reshape(p(:,reshape(tt', [], 1)), 2, [], 4);
@@ -21,7 +18,10 @@ end
 
 if nargin==5
     trisurf(t(1:3,:)',p(1,:),p(2,:),u)
-    zlabel(zdata);
-    title('Surface plot')
+    zlabel("zdata");
+    title(zdata)
+   
 
 end
+
+saveas(gcf, zdata+".svg")
